@@ -1,0 +1,16 @@
+.invoice-card {
+    max-height: 390px;
+}
+
+.invoice-card .card-body {
+    max-height: 350px;
+}
+
+::deep .table {
+    font-size: 0.8rem;
+}
+
+::deep .table th,
+::deep .table td {
+    padding: 0.3rem;
+}

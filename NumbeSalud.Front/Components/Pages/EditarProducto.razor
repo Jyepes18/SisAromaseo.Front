@@ -1,0 +1,93 @@
+﻿@inherits Components
+
+<div class="modal fade"
+     id="editarProductoModal"
+     tabindex="-1"
+     aria-labelledby="editarProducto"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editarProducto">
+                    Editar producto
+                </h1>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close">
+                </button>
+            </div>
+
+            <EditForm Model="@productoDto"
+                      OnValidSubmit="ActualizarProducto">
+
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="modal-body">
+
+                    <div class="alert alert-primary" role="alert">
+                        Todos los campos con un * son obligatorios
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="name" class="form-label">
+                            Nombre (*)
+                        </label>
+
+                        <TextInput @bind-Value="productoDto.Name"
+                                   class="form-control border border-secondary"
+                                   id="name" />
+
+                        <ValidationMessage For="@(() => productoDto.Name)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="presentation" class="form-label">
+                            Presentación (*)
+                        </label>
+
+                        <TextInput @bind-Value="productoDto.Presentation"
+                                   class="form-control border border-secondary"
+                                   id="presentation" />
+
+                        <ValidationMessage For="@(() => productoDto.Presentation)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">
+                            Precio (*)
+                        </label>
+
+                        <InputNumber @bind-Value="productoDto.Price"
+                                     class="form-control border border-secondary"
+                                     id="price" />
+
+                        <ValidationMessage For="@(() => productoDto.Price)" />
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-warning">
+                        Actualizar
+                    </button>
+
+                </div>
+
+            </EditForm>
+
+        </div>
+    </div>
+</div>

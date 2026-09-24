@@ -1,0 +1,121 @@
+﻿@inherits Components
+
+<div class="modal fade" id="editarUsuarioModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Editar usuario
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+            </div>
+
+            <EditForm Model="@userDto"
+                      OnValidSubmit="ActualizarUsuario">
+
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Nombre
+                        </label>
+
+                        <TextInput @bind-Value="userDto.Name"
+                                   class="form-control border border-secondary" />
+
+                        <ValidationMessage For="@(() => userDto.Name)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Apellido
+                        </label>
+
+                        <TextInput @bind-Value="userDto.LastName"
+                                   class="form-control border border-secondary" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Dirección
+                        </label>
+
+                        <TextInput @bind-Value="userDto.Address"
+                                   class="form-control border border-secondary" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Teléfono
+                        </label>
+
+                        <TextInput @bind-Value="userDto.Phone"
+                                   class="form-control border border-secondary" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Empresa
+                        </label>
+
+                        <TextInput @bind-Value="userDto.Company"
+                                   class="form-control border border-secondary" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Tipo de documento
+                        </label>
+
+                        <InputSelect @bind-Value="userDto.TypeDocument"
+                                     class="form-select">
+
+                            <option value="">
+                                Seleccione un tipo de documento
+                            </option>
+
+                            <option value="1">CC</option>
+                            <option value="2">NIT</option>
+
+                        </InputSelect>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">
+                            Documento
+                        </label>
+
+                        <TextInput @bind-Value="userDto.Document"
+                                   class="form-control border border-secondary" />
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+                        Cerrar
+                    </button>
+
+                    <button type="submit"
+                            class="btn btn-warning">
+                        Actualizar
+                    </button>
+
+                </div>
+
+            </EditForm>
+
+        </div>
+    </div>
+</div>

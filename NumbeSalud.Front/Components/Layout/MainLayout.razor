@@ -1,0 +1,18 @@
+﻿@using NumbeSalud.Front.Components.Pages
+@inherits LayoutComponentBase
+
+<AuthGuard>
+
+<div class="container-fluid px-0">
+    <NavMenu/>   
+</div>
+
+<div class="pt-2">
+    <main>
+        <article class="container-fluid">
+            @Body
+        </article>
+    </main>
+</div>
+
+</AuthGuard>

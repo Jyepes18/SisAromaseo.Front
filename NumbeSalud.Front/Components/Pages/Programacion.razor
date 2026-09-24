@@ -1,0 +1,102 @@
+﻿@page "/Programacion"
+@using NumbeSalud.Front.Enums
+@inherits Components
+
+<InsertarProgrmacion OrderCreado="RecargarProgramacion"/>
+
+<VerProgramacion @ref="abrirVerProgramacion"
+               ProgramcionAbrir="RecargarProgramacion" />
+
+<Grid 
+    TItem="OrderResponse" 
+    @ref="OrderGrid"
+    class="table table-bordered border-dark" 
+    DataProvider="OrderData"
+    AllowPaging="true" 
+    AllowFiltering="true" 
+    Responsive="true"> 
+
+    <GridColumn
+        TItem="OrderResponse"
+        HeaderText="Nombre completo"
+        PropertyName="FullName"
+        Filterable="true"
+        FilterTextboxWidth="200">
+         @context.FullName
+    </GridColumn> 
+
+    <GridColumn
+        TItem="OrderResponse"
+        HeaderText="Fecha"
+        PropertyName="Date"
+        Filterable="false"
+        Class="text-center">
+
+        <div class="d-flex justify-content-center align-items-center">
+            <span class="@context.DateClass rounded-pill fs-6 px-3 py-2">
+                @context.DateFormatted
+            </span>
+        </div>
+
+    </GridColumn>
+
+    <GridColumn
+        TItem="OrderResponse"
+        HeaderText="Estado"
+        PropertyName="Status"
+        Filterable="false"
+        FilterTextboxWidth="150">
+
+        <div class="text-center">
+            @if (context.Status == StatusOrder.PROGRAMMING.ToString())
+            {
+                <span class="badge text-bg-warning">Programando</span>
+            }
+            else if (context.Status == StatusOrder.CANCELLED.ToString())
+            {
+                <span class="badge text-bg-success">Cancelado</span>
+            }
+        </div>
+
+    </GridColumn>
+    
+    <GridColumn TItem="OrderResponse"
+                HeaderText="Acciones"
+                Filterable="false"
+                Class="text-center">
+
+        <div class="d-flex justify-content-center align-items-center gap-2">
+
+            <Button Color="ButtonColor.Info"
+                    Size="ButtonSize.Small"
+                    @onclick="() => VerProgrmacion(context.Id)">
+                Ver
+            </Button>
+
+            @if (context.Status == StatusOrder.PROGRAMMING.ToString())
+            {
+                <Button Color="ButtonColor.Danger"
+                        Size="ButtonSize.Small"
+                        @onclick="() => EliminarProgramacion(context.Id)">
+                    Eliminar
+                </Button>
+
+                <Button Color="ButtonColor.Success"
+                        Size="ButtonSize.Small"
+                        @onclick="() => Faturar(context.Id)">
+                    Facturar
+                </Button>
+            }
+            else if (context.Status == StatusOrder.CANCELLED.ToString())
+            {
+                <Button Color="ButtonColor.Danger"
+                        Size="ButtonSize.Small"
+                        @onclick="() => DescargarFactura(context.Id)">
+                   Descargar Factura
+                </Button>
+            }
+
+        </div>
+
+    </GridColumn>
+</Grid>

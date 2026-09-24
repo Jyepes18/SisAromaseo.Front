@@ -1,0 +1,52 @@
+﻿@page "/productos"
+@using NumbeSalud.Front.Models.Products
+@inherits Components
+
+<InsertarProducto ProductoCreado="RecargarProductos"/>
+<EditarProducto @ref="editarProducto"
+                ProductoEditado="RecargarProductos" />
+
+<Grid TItem="ProductResponseDto"
+      @ref="productGrid"
+      class="table table-bordered border-dark"
+      DataProvider="ProductData"
+      AllowPaging="true"
+      AllowFiltering="true"
+      Responsive="true">
+
+      <GridColumn TItem="ProductResponseDto"
+                  HeaderText="Nombre"
+                  PropertyName="Name"
+                  Filterable="true"
+                  FilterTextboxWidth="150">
+            @context.Name
+      </GridColumn>
+
+      <GridColumn TItem="ProductResponseDto"
+                  HeaderText="Presentación"
+                  PropertyName="Presentation"
+                  Filterable="true"
+                  FilterTextboxWidth="150">
+            @context.Presentation
+      </GridColumn>
+
+      <GridColumn TItem="ProductResponseDto"
+                  HeaderText="Precio"
+                  PropertyName="Price"
+                  Filterable="false">
+            @context.Price.ToString("N0", new System.Globalization.CultureInfo("es-CO"))
+      </GridColumn>
+      
+      <GridColumn TItem="ProductResponseDto"
+                  HeaderText="Acciones"
+                  Filterable="false"
+                  Class="text-center">
+
+            <Button Color="ButtonColor.Warning"
+                    Size="ButtonSize.Small" class="text-center"
+                    @onclick="() => EditarProducto(context.Id)">
+                  Editar
+            </Button>
+
+      </GridColumn>
+</Grid>

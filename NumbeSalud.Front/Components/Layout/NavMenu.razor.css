@@ -1,0 +1,102 @@
+nav {
+    background: #007bff;
+}
+
+/* Links del menú */
+.nav-item-custom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 18px !important;
+
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/* Iconos */
+.nav-item-custom svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Texto dentro de los links */
+.nav-item-custom span {
+    font-size: 18px;
+}
+
+/* Botón hamburguesa */
+.navbar-toggler {
+    border-color: white;
+}
+
+/* Icono hamburguesa blanco */
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* CONTENEDOR DEL MENÚ */
+.nav-menu-center {
+    width: 100%;
+    align-items: center;
+}
+
+/* =========================
+   ESCRITORIO
+   ========================= */
+@media (min-width: 992px) {
+
+    .nav-menu-center {
+        position: absolute;
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        width: auto;
+
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* =========================
+   MÓVIL / TABLET
+   ========================= */
+@media (max-width: 991.98px) {
+
+    .navbar-collapse {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .nav-menu-center {
+        position: static;
+
+        transform: none;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .nav-item-custom {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        padding: 12px 16px !important;
+    }
+
+    .nav-item-custom span {
+        font-size: 17px;
+    }
+
+    .nav-item-custom svg {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,44 @@
+﻿@using NumbeSalud.Front.DTOs.Invoice
+@inherits Components
+
+<div class="card shadow-sm invoice-card">
+    <div class="card-header bg-primary text-white">
+        Últimas facturas
+    </div>
+
+    <div class="card-body p-2 overflow-auto">
+        <Grid TItem="InvoiceResponseDto"
+              class="table table-sm table-bordered mb-0"
+              AllowPaging="true"
+              PageSize="5"
+              AllowFiltering="true"
+              Responsive="true"
+              DataProvider="LastInvoiceData">
+
+            <GridColumn TItem="InvoiceResponseDto"
+                        HeaderText="Cliente"
+                        PropertyName="UserName"
+                        Filterable="true"
+                        FilterTextboxWidth="110">
+                @context.UserName
+            </GridColumn>
+            
+            <GridColumn TItem="InvoiceResponseDto"
+                        HeaderText="Acciones"
+                        Filterable="false"
+                        Class="text-center">
+
+                <div class="d-flex justify-content-center align-items-center gap-2">
+
+                    <Button Color="ButtonColor.Danger"
+                            Size="ButtonSize.Small"
+                            @onclick="() => DescargarFactura(context.Id)">
+                        Descargar factura
+                    </Button>
+                </div>
+
+            </GridColumn>
+            
+        </Grid>
+    </div>
+</div>

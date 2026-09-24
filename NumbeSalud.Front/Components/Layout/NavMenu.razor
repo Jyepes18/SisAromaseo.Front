@@ -1,0 +1,56 @@
+﻿@inherits Components
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid position-relative">
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navAromaseo"
+                aria-controls="navAromaseo"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navAromaseo">
+
+            <div class="navbar-nav nav-menu-center">
+
+                <NavLink class="nav-link nav-item-custom link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                         href="/Home">
+                    <Icon Name="IconName.HouseFill" Size="IconSize.x3" />
+                    <span>Inicio</span>
+                </NavLink>
+
+                <NavLink class="nav-link nav-item-custom link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                         href="usuarios">
+                    <Icon Name="IconName.PeopleFill" Size="IconSize.x3" />
+                    <span>Usuarios</span>
+                </NavLink>
+
+                <NavLink class="nav-link nav-item-custom link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                         href="productos">
+                    <Icon Name="IconName.BoxSeamFill" Size="IconSize.x3" />
+                    <span>Productos</span>
+                </NavLink>
+
+                <NavLink class="nav-link nav-item-custom link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                         href="Programacion">
+                    <Icon Name="IconName.ClockFill" Size="IconSize.x3" />
+                    <span>Programación</span>
+                </NavLink>
+
+            </div>
+
+            <div class="ms-lg-auto mt-3 mt-lg-0">
+                <button class="btn btn-danger"
+                        @onclick="CerrarSesion">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Cerrar sesión
+                </button>
+            </div>
+
+        </div>
+    </div>
+</nav>

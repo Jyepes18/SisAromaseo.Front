@@ -1,0 +1,83 @@
+﻿@inherits Components
+
+<div class="d-flex justify-content-end pb-4 pt-1">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoUsuarioModal">
+        Insertar Usuario
+    </button>
+</div>
+
+
+<div class="modal fade" id="nuevoUsuarioModal" tabindex="-1" aria-labelledby="nuevoUsuario" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="nuevoUsuario">Insertar nuevo usuario</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <EditForm Model="@newUserDto" OnValidSubmit="InsertarDatos">
+                <DataAnnotationsValidator/> <ValidationSummary/>
+                <div class="modal-body">
+                    <div class="alert alert-primary" role="alert">
+                        Todos los campos con un * son obligatorios
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre (*)</label>
+                        <TextInput @bind-Value="newUserDto.Name" class="form-control border border-secondary" id="name" />
+                        <ValidationMessage For="@(() => newUserDto.Name)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Apellido</label>
+                        <TextInput @bind-Value="newUserDto.LastName" class="form-control border border-secondary" id="lastName" />
+                        <ValidationMessage For="@(() => newUserDto.LastName)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Dirección</label>
+                        <TextInput @bind-Value="newUserDto.Address" class="form-control border border-secondary" id="address" />
+                        <ValidationMessage For="@(() => newUserDto.Address)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <TextInput @bind-Value="newUserDto.Phone" class="form-control border border-secondary" id="phone" />
+                        <ValidationMessage For="@(() => newUserDto.Phone)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Empresa</label>
+                        <TextInput @bind-Value="newUserDto.Company" class="form-control border border-secondary" id="company" />
+                        <ValidationMessage For="@(() => newUserDto.Company)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="typeDocument" class="form-label">Tipo de documento</label>
+
+                        <InputSelect @bind-Value="newUserDto.TypeDocument"
+                                     class="form-select"
+                                     id="typeDocument">
+                            <option value="">Seleccione un tipo de documento</option>
+                            <option value="1">CC</option>
+                            <option value="2">NIT</option>
+                        </InputSelect>
+
+                        <ValidationMessage For="@(() => newUserDto.TypeDocument)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="document" class="form-label">Documento</label>
+                        <TextInput @bind-Value="newUserDto.Document" class="form-control border border-secondary" id="document" />
+                        <ValidationMessage For="@(() => newUserDto.Document)" />
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Insertar</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>

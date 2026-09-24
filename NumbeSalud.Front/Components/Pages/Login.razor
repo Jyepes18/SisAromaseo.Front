@@ -1,0 +1,46 @@
+﻿@layout EmptyLayout
+@page "/"
+@inherits Components
+@rendermode InteractiveServer
+
+<div class="home-page">
+    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+
+        <Image Src="/IMGs/userLogin.png"
+               Class="rounded d-block mb-4"
+               Alt="imagen login"
+               Style="width: 09rem;" />
+
+        <EditForm Model="LoginDto"
+                  style="width: 20rem;"
+                  OnValidSubmit="LoginOauth">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo</label>
+
+                <TextInput class="form-control border border-black"
+                           Id="email"
+                           @bind-Value="LoginDto.Email" />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+
+                <PasswordInput class="form-control border border-black"
+                               Id="password"
+                               @bind-Value="LoginDto.Password" />
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">
+                    Ingresar
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
