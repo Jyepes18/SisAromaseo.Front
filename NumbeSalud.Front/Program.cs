@@ -10,12 +10,16 @@ builder.Services
 builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddScoped<TokenRequest>();
+var apiBaseUrl = builder.Configuration["ApiSettings:BaseUrl"]
+                 ?? throw new InvalidOperationException(
+                     "No se configuró ApiSettings:BaseUrl."
+                 );
 
 builder.Services.AddScoped<HttpClient>(sp =>
 {
     return new HttpClient
     {
-        BaseAddress = new Uri("https://localhost:7045/")
+        BaseAddress = new Uri(apiBaseUrl)
     };
 });
 
