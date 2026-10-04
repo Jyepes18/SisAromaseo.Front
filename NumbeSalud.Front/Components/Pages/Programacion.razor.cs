@@ -172,7 +172,7 @@ public partial class Programacion : Components
         }
     }
 
-    private async Task DescargarFactura(int id)
+    private async Task DescargarFactura(int id, string fullName)
     {
         try
         {
@@ -190,10 +190,13 @@ public partial class Programacion : Components
                 return;
             }
 
+            var nombreArchivo =
+                $"{fullName}-{DateTime.UtcNow.ToString("dd-MM-yyyy", new CultureInfo("es-CO"))}.pdf";
+
             await _js.InvokeVoidAsync(
                 "descargarPdfBase64",
                 result.Value,
-                $"Factura-{DateTime.UtcNow.ToString("dddd dd-MM-yyyy", new CultureInfo("es-Co"))}.pdf");
+                nombreArchivo);
         }
         catch (Exception ex)
         {

@@ -106,3 +106,76 @@ window.auth = {
     }
 
 };
+
+window.crearGraficaVentasMensuales = (labels, values) => {
+
+    const canvas = document.getElementById("salesByMonthChart");
+
+    if (!canvas) {
+        return;
+    }
+
+    if (window.salesByMonthChartInstance) {
+        window.salesByMonthChartInstance.destroy();
+    }
+
+    window.salesByMonthChartInstance = new Chart(canvas, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: "Ventas",
+                    data: values,
+                    backgroundColor: "#0d6efd",
+                    borderRadius: 8
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            return new Intl.NumberFormat(
+                                "es-CO",
+                                {
+                                    style: "currency",
+                                    currency: "COP",
+                                    maximumFractionDigits: 0
+                                }
+                            ).format(context.raw);
+                        }
+                    }
+                }
+            },
+
+            scales: {
+                y: {
+                    beginAtZero: true,
+
+                    ticks: {
+                        callback: function (value) {
+                            return new Intl.NumberFormat(
+                                "es-CO",
+                                {
+                                    style: "currency",
+                                    currency: "COP",
+                                    notation: "compact",
+                                    maximumFractionDigits: 1
+                                }
+                            ).format(value);
+                        }
+                    }
+                }
+            }
+        }
+    });
+};
